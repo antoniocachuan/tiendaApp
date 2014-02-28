@@ -1,4 +1,4 @@
-libreriaapp
-===========
+tiendaApp
+=========
 
-Simple aplicación para venta de libros usando Spring MVC
+Spring MVC + JSF + Primefaces + Bootstrap
