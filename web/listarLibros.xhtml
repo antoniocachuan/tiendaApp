@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:k="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="./plantilla/plantillaPrincipal.xhtml">
+            <ui:define name="content">
+                <h:form id="form">
+                    <div class="well">
+                        <legend>#{accionesController.tipo}</legend>
+                        <p:dataGrid var="r" value="#{accionesController.lista}" columns="3"  
+                                    rows="3" paginator="true"  
+                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                    rowsPerPageTemplate="3,6,9">  
+                            <p:panel header="#{r.title}" style="text-align:center">  
+                                <h:panelGrid columns="1" style="width:100%">  
+                                    <p:graphicImage value="/img/libros/#{r.ubicacion}.jpg"/>
+                                    <h:outputText value="#{r.book_id}" />
+                                    <h:outputText value="#{r.author}" />
+                                    <p:commandButton icon="ui-icon-search" update=":form:carDetail" title="View Detail" k:data-toggle="modal" k:data-target="#vermasinformacion">  
+                                        <f:setPropertyActionListener value="#{r}" target="#{accionesController.libroelegido}" />  
+                                    </p:commandButton>  
+                                </h:panelGrid>  
+                            </p:panel>  
+                        </p:dataGrid>
+
+                        <!--</p:dialog>-->
+                        <div class="modal fade" id="vermasinformacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p:outputPanel id="carDetail" style="text-align:center;">  
+                                                <legend>#{accionesController.libroelegido.title}</legend>
+                                                <p:graphicImage value="/img/libros/#{accionesController.libroelegido.ubicacion}.jpg"/>
+                                                <h:panelGrid  columns="2" cellpadding="5" style="text-align: left">
+
+                                                    <h:outputLabel for="idbook" value="Registro ISBN: " />  
+                                                    <h:outputText id="idbook" value="#{accionesController.libroelegido.book_id}002014" />  
+
+                                                    <h:outputLabel for="autorlibro" value="Autor :" />  
+                                                    <h:outputText id="autorlibro" value="#{accionesController.libroelegido.author}" />  
+
+                                                    <h:outputLabel for="preciolibro" value="Precio :" />  
+                                                    <h:outputText id="preciolibro" value="$ #{accionesController.libroelegido.price}" /> 
+
+                                                    <h:commandButton value="Comprar" class="btn btn-primary" action="#{ventaController.registroVenta()}"/>
+                                                    <h:commandButton value="Agregar al carrito" class="btn btn-default"/>
+                                                </h:panelGrid>
+
+                                            </p:outputPanel>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

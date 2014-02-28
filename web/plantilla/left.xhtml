@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      >
+    <head>
+        <title>Columna izquierda</title>
+        <meta name="viewport" content="width=device-width"/>
+    </head>
+    <body>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span> Libros</a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <h:form>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><h:commandLink value="Artículos" action="#{accionesController.consultarArticulos()}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-flash text-success"></span><h:commandLink value="Informatica" action="#{accionesController.consultarLibrosInformatica()}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span><h:commandLink value="Literatura" action="#{accionesController.consultarLibrosLiteratura()}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-usd"></span><h:commandLink value="Toda la Biblioteca" action="#{accionesController.consultarLibros()}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="#"> Calificaciones</a>
+                                        <span class="badge">42</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>    
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            </span> Módulos</a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <a href="#"> Solicitar Libro</a> <span class="label label-success">$ 320</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"> Costos de Envío</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"> Promociones</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"> Tiendas</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
+                            </span> Mi Cuenta</a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <a href="#"> Cambiar Clave</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"> Notificaciones</a> <span class="label label-info">5</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon glyphicon-trash text-danger"></span><a href="#" class="text-danger">
+                                        Dar de baja</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
+                            </span>Reportes</a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <span class="glyphicon glyphicon-usd"></span><a href="#"> Comprados</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon glyphicon-user"></span><a href="#"> Alquilados</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon glyphicon-tasks"></span><a href="#"> Boletas</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon glyphicon-shopping-cart"></span><a href="#"> Carro de Compras</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

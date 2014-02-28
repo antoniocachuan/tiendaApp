@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Librería App</title>
+        <link href="#{request.contextPath}/css/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/jumbotron-narrow.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/estilos.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="active"><a href="#">Inicio</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Iniciar Sesión <b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h:form class="form" p:role="form" p:accept-charset="UTF-8" id="login-nav">
+                                            <h:messages style="color: red; background-color: white;" 
+                                                        showSummary="true"
+                                                        showDetail="true"/>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" jsf:id="usuario" placeholder="Usuario" jsf:value="#{inicioController.usuario}"/>             
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" jsf:id="clave" placeholder="Contraseña" jsf:value="#{inicioController.clave}"/>
+                                            </div>  
+                                            <div class="form-group">
+                                                <h:commandButton value="Entrar" class="btn btn-success btn-block" action="#{inicioController.procesar()}"/>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Iniciar Sesión con Google"/>
+                                <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Iniciar Sesión con Twitter"/>
+                            </li>
+                        </ul>     
+                    </li>
+                </ul>
+                <h3 class="text-muted">Librería App</h3>
+            </div>
+            <div class="jumbotron">
+                <h1>El Libro Azul</h1>
+                <p class="lead">Bienvenidos a la nueva página, rediseñada para su fácil navegación y comodidad</p>
+                <p>
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#registrar">
+                        Regístrese Hoy
+                    </button>
+                </p>
+            </div>
+            <div class="row marketing">
+                <div class="col-lg-12">
+                    <h4>Anuncios</h4>
+                    <p>A todos nuestros proveedores, a partir del día 26 de diciembre pueden acercarse.</p>
+                    <h4>Promociones</h4>
+                    <p>Todos los libros para niños con 20% de descuento.</p>
+                    <h4>Obra del Mes</h4>
+                    <p>Descubre la magia del nuevo libro de MVLL.</p>
+                </div>
+            </div>
+            <div class="footer">
+                <p> Antonio Cachuán 2014</p>
+            </div>
+        </div> <!-- /container -->
+        <!-- Modal -->
+        <div class="modal fade" id="registrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <legend>Registro</legend>
+                            <!--<form class="form form-signup" role="form">-->
+                                <h:form class="form" p:role="form" p:accept-charset="UTF-8">
+                                    <h:messages style="color: red; background-color: white;" 
+                                                showSummary="true"
+                                                showDetail="true"/>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                            <input type="text" class="form-control" placeholder="Usuario" jsf:id="usuarionuevo" jsf:value="#{inicioController.nuevoempleado.idempleado}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                            <input type="email" class="form-control" placeholder="Correo electrónico" jsf:id="correo" jsf:value="#{inicioController.nuevoempleado.correo}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                            <input type="password" class="form-control" placeholder="Contraseña" jsf:id="clavenuevo" jsf:value="#{inicioController.nuevoempleado.clave}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                            <input type="text" class="form-control" placeholder="Nombres" jsf:id="nombres" jsf:value="#{inicioController.nuevoempleado.nombres}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                            <input type="text" class="form-control" placeholder="Apellidos" jsf:id="apellidos" jsf:value="#{inicioController.nuevoempleado.apellidos}"/>
+                                        </div>
+                                    </div>
+                                     <h:commandButton value="Registrarme" class="btn btn-success btn-block" action="#{inicioController.registrar()}"/>
+                                </h:form>
+                            <!--</form>-->
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->        
+        <script src="#{request.contextPath}/js/jquery.min.js"></script>
+        <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/js/modal.js"></script>
+    </h:body>
+</html>

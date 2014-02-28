@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:k="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:body>
+        <ui:composition template="./plantilla/plantillaPrincipal.xhtml">
+            <ui:define name="content">
+                <h:form id="form2">
+                    <div class="well">
+                        <legend>Resumen de Compra</legend>
+                        <div class="col-xs-12">
+                            <ul class="nav nav-pills nav-justified thumbnail">
+                                <li><h:commandLink action="#{accionesController.consultarLibros()}">
+                                        <h4 class="list-group-item-heading">Paso 1</h4>
+                                        <p class="list-group-item-text">Escoja el Producto</p>
+                                    </h:commandLink></li>
+                                <li class="active"><a href="#">
+                                        <h4 class="list-group-item-heading">Paso 2</h4>
+                                        <p class="list-group-item-text">Elija la cantidad e ingrese los datos del cliente</p>
+                                    </a></li>
+                                <li class="disabled"><a href="#">
+                                        <h4 class="list-group-item-heading">Paso 3</h4>
+                                        <p class="list-group-item-text">Entregue la boleta</p>
+                                    </a></li>
+                            </ul>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-10 col-md-8">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                <th class="text-center">Precio</th>
+                                                <th class="text-center">Total</th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td class="col-sm-12 col-md-12">
+                                                    <div class="media">
+                                                        <p:outputPanel id="carDetail" style="text-align:left;">  
+                                                            <a class="thumbnail pull-left" href="#">
+                                                                <p:graphicImage value="/img/libros/#{accionesController.libroelegido.ubicacion}.jpg"/>
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <h4><a href="#">#{accionesController.libroelegido.title}</a></h4>
+                                                                <h:panelGrid  columns="1" cellpadding="1">                                                                
+                                                                    <h:outputLabel for="autorlibro" value="Autor :" />  
+                                                                    <h:outputText id="autorlibro" value="#{accionesController.libroelegido.author}" />  
+
+                                                                    <span>Disponible </span><span class="text-success"><strong>Sí</strong></span>
+                                                                </h:panelGrid>
+                                                            </div>
+                                                        </p:outputPanel>
+                                                    </div>    
+                                                </td>
+                                                <td class="col-md-1" style="text-align: center">
+                                                    <p:inputText id="cantidad" value="#{ventaController.cantidad}" size="2">  
+                                                        <p:ajax event="keyup" update="cantidadLibros subtotal total" />  
+                                                    </p:inputText>
+                                                </td>
+                                                <td class="col-sm-1 col-md-1 text-center"><strong>$#{accionesController.libroelegido.price}</strong></td>
+                                                <td class="col-sm-1 col-md-1 text-center"><strong><h:outputText id="cantidadLibros" value="#{ventaController.cantidad * accionesController.libroelegido.price}" ></h:outputText>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td><h5>Subtotal</h5></td>
+                                                <td class="text-right">
+                                                    <h5>
+                                                        <h:outputText id="subtotal" value="$#{ventaController.cantidad * accionesController.libroelegido.price}" ></h:outputText>
+                                                    </h5>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td><h5>Costo de Envío</h5></td>
+                                                <td class="text-right"><h5><strong>$5.00</strong></h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td><h3>Total</h3></td>
+                                                <td class="text-right"><h3><strong> <h:outputText id="total" value="" ></h:outputText></strong></h3></td>
+                                            </tr>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-default">
+                                                        <span class="glyphicon glyphicon-shopping-cart"></span> Continuar Comprando
+                                                    </button></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#datosCliente">
+                                                        Ingresar Datos <span class="glyphicon glyphicon-play"></span>
+                                                    </button>
+                                                    <!--                                                    <h:commandButton value="Pagar" class="btn btn-success">
+                                                                                                           
+                                                                                                        </h:commandButton>    -->
+
+                                                </td>
+                                                <!--                                            <td class="col-sm-1 col-md-1">
+                                                                                                <button type="button" class="btn btn-danger">
+                                                                                                    <span class="glyphicon glyphicon-remove"></span> Cancelar
+                                                                                                </button>
+                                                                                            </td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+                <!-- Modal -->
+                <div class="modal fade" id="datosCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <legend>Datos del Cliente</legend>
+                                    <h:form class="form" p:role="form" p:accept-charset="UTF-8">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                <input type="text" class="form-control" placeholder="Nombres y Apellidos" jsf:id="nombreCliente" jsf:value="#{ventaController.orders.delivery_name}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                                <input type="text" class="form-control" placeholder="Direccion" jsf:id="direccionCliente" jsf:value="#{ventaController.orders.delivery_address}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                                <input type="text" class="form-control" placeholder="Telefono" jsf:id="telefonoCliente" jsf:value="#{ventaController.orders.cc_number}"/>
+                                            </div>
+                                        </div>
+                                        <h:commandButton value="Terminar" class="btn btn-success btn-block" action="#{ventaController.procesarVenta()}">
+                                            <f:setPropertyActionListener value="#{accionesController.libroelegido}" target="#{ventaController.libroCompra}" />  
+                                        </h:commandButton>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

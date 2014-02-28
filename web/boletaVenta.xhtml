@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:k="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:body>
+        <ui:composition template="./plantilla/plantillaPrincipal.xhtml">
+            <ui:define name="content">
+
+                <h:form id="form2">
+                    <div class="well">
+                        <legend>Resumen de Compra</legend>
+                        <div class="col-xs-12">
+                            <ul class="nav nav-pills nav-justified thumbnail">
+                                <li class="disabled"><h:commandLink action="#{accionesController.consultarLibros()}">
+                                        <h4 class="list-group-item-heading">Paso 1</h4>
+                                        <p class="list-group-item-text">Escoja el Producto</p>
+                                    </h:commandLink></li>
+                                <li class="disabled"><a href="#">
+                                        <h4 class="list-group-item-heading">Paso 2</h4>
+                                        <p class="list-group-item-text">Elija la cantidad e ingrese los datos del cliente</p>
+                                    </a></li>
+                                <li class="active"><a href="#">
+                                        <h4 class="list-group-item-heading">Paso 3</h4>
+                                        <p class="list-group-item-text">Entregue la boleta</p>
+                                    </a></li>
+                            </ul>
+                        </div>
+                        <div class="container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-8">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                <address>
+                                                    <strong>Libreria App S.A.</strong>
+                                                    <br/>
+                                                    Av. Lima 2332
+                                                    <br/>
+                                                    Lima, Perú
+                                                    <br/>
+                                                    <abbr title="Phone">P:</abbr> (01) 555-3333
+                                                </address>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                                                <p>
+                                                    <em>Fecha: 04 Enero, 2014</em>
+                                                </p>
+                                                <p>
+                                                    <em>RUC #: 10751279451</em>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="text-center">
+                                                <h1>Boleta de Venta</h1>
+                                            </div>
+
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Producto</th>
+                                                        <th>#</th>
+                                                        <th class="text-center">Precio</th>
+                                                        <th class="text-center">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="col-md-9"><em>#{accionesController.libroelegido.title}</em></td>
+                                                        <td class="col-md-1" style="text-align: center"> #{ventaController.cantidad} </td>
+                                                        <td class="col-md-1 text-center">$#{accionesController.libroelegido.price}</td>
+                                                        <td class="col-md-1 text-center">$#{ventaController.cantidad * accionesController.libroelegido.price+5}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>   </td>
+                                                        <td>   </td>
+                                                        <td class="text-right">
+                                                            <p>
+                                                                <strong>Subtotal: </strong>
+                                                            </p>
+                                                            <p>
+                                                                <strong>IGV: </strong>
+                                                            </p></td>
+                                                        <td class="text-center">
+                                                            <p>
+                                                                <strong>$#{ventaController.cantidad * accionesController.libroelegido.price+5}</strong>
+                                                            </p>
+                                                            <p>
+                                                                <strong>$#{ventaController.cantidad * accionesController.libroelegido.price * 0.19}</strong>
+                                                            </p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>   </td>
+                                                        <td>   </td>
+                                                        <td class="text-right"><strong>Total: </strong></td>
+                                                        <td class="text-center text-danger"><strong>$#{ventaController.cantidad * accionesController.libroelegido.price * 0.19 + ventaController.cantidad * accionesController.libroelegido.price+5}</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p:dataTable id="tbl" var="boleta" value="#{accionesController.libroelegido}" paginator="false" rows="5"> 
+
+                       
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="Producto" />  
+                                </f:facet>
+                                <h:outputText value="#{boleta.title}" />  
+                            </p:column>  
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="#" />  
+                                </f:facet>
+                                <h:outputText value="#{ventaController.cantidad}"/>  
+                            </p:column>  
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="Precio" />  
+                                </f:facet>
+                                <h:outputText value="$#{boleta.price}" />
+
+                            </p:column>  
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    <h:outputText value="Total" />  
+                                </f:facet>
+                                <h:outputText value="$#{boleta.price+5}" />  
+                            </p:column>
+                       
+<!--                        <p:row>
+                            <p:column></p:column>
+                            <p:column></p:column>
+                            <p:column></p:column>
+                            <p:column><h:outputText value="Subtotal" />  </p:column>
+                        </p:row>-->
+                        <!--
+                        <p:row>
+                            <p:column></p:column>
+                            <p:column></p:column>
+                            <p:column></p:column>
+                            <p:column><h:outputText value="IGV" /></p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column></p:column>
+                            <p:column></p:column>
+                            <p:column></p:column>
+                            <p:column> <h:outputText value="Total" />           </p:column>                            
+                        </p:row>-->
+
+
+
+
+                    </p:dataTable>  
+                    <h:panelGrid columns="2">  
+                        <p:panel header="Exportar">  
+                            <h:commandLink>  
+                                <p:graphicImage value="/img/excel.png" />  
+                                <p:dataExporter type="xls" target="tbl" fileName="cars" />  
+                            </h:commandLink>  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/img/pdf.png" />  
+                                <p:dataExporter type="pdf" target="tbl" fileName="cars"/>  
+                            </h:commandLink>  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/img/csv.png" />  
+                                <p:dataExporter type="csv" target="tbl" fileName="cars" />  
+                            </h:commandLink>  
+
+                            <h:commandLink>  
+                                <p:graphicImage value="/img/xml.png" />  
+                                <p:dataExporter type="xml" target="tbl" fileName="cars" />  
+                            </h:commandLink>  
+                        </p:panel>             
+                    </h:panelGrid>  
+                </h:form>          
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
